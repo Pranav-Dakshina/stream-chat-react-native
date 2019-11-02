@@ -1,7 +1,7 @@
 {
   "name": "stream-chat-react-native-ui-tweaks",
   "description": "This is a fork from original stream-chat from Stream.io with additional ability to tweak the UI",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": {
     "name": "Pranav Dakshinamurthy",
     "company": "Stream.io Inc"

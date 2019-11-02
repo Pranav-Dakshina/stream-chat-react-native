@@ -183,6 +183,38 @@ const MessageInput = withKeyboardContext(
              * @see See https://facebook.github.io/react-native/docs/textinput#reference
              */
             additionalTextInputProps: PropTypes.object,
+            /** Custom Icon for sending New message **/
+            newMessageIcon: PropTypes.oneOfType([
+              PropTypes.shape({
+                uri: PropTypes.string,
+                headers: PropTypes.objectOf(PropTypes.string),
+              }),
+              PropTypes.number,
+              PropTypes.arrayOf(
+                PropTypes.shape({
+                  uri: PropTypes.string,
+                  width: PropTypes.number,
+                  height: PropTypes.number,
+                  headers: PropTypes.objectOf(PropTypes.string),
+                }),
+              ),
+            ]),
+            /** Custom Icon for editing message **/
+            editMessageIcon: PropTypes.oneOfType([
+              PropTypes.shape({
+                uri: PropTypes.string,
+                headers: PropTypes.objectOf(PropTypes.string),
+              }),
+              PropTypes.number,
+              PropTypes.arrayOf(
+                PropTypes.shape({
+                  uri: PropTypes.string,
+                  width: PropTypes.number,
+                  height: PropTypes.number,
+                  headers: PropTypes.objectOf(PropTypes.string),
+                }),
+              ),
+            ]),
           };
 
           static defaultProps = {
@@ -676,7 +708,13 @@ const MessageInput = withKeyboardContext(
             this.attachActionSheet.hide();
           };
           render() {
-            const { hasImagePicker, hasFilePicker, SendButton } = this.props;
+            const {
+              hasImagePicker,
+              hasFilePicker,
+              SendButton,
+              newMessageIcon,
+              editMessageIcon,
+            } = this.props;
             let editingBoxStyles = {};
             if (this.props.editing) {
               editingBoxStyles = {
@@ -814,6 +852,8 @@ const MessageInput = withKeyboardContext(
                         title="Pick an image from camera roll"
                         sendMessage={this.sendMessage}
                         editing={this.props.editing}
+                        newMessageIcon={newMessageIcon}
+                        editMessageIcon={editMessageIcon}
                       />
                     </InputBoxContainer>
                   </Container>
